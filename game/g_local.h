@@ -225,11 +225,19 @@ typedef struct {
 // MUST be dealt with in G_InitSessionData() / G_ReadSessionData() / G_WriteSessionData()
 typedef struct {
 	team_t		sessionTeam;
+#ifdef DEFRAG
+	team_t		respawnPointTeam;
+#endif
 	int			spectatorTime;		// for determining next-in-line to play
 	spectatorState_t	spectatorState;
 	int			spectatorClient;	// for chasecam and follow mode
 	int			wins, losses;		// tournament stats
 	qboolean	teamLeader;			// true when this client is a team leader
+#ifdef DEFRAG
+	vec3_t		respawnPoint;
+	int			bestTime;
+	int			ignoreBitmap[2];
+#endif
 } clientSession_t;
 
 //
