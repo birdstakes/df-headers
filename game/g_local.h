@@ -244,6 +244,14 @@ typedef struct {
 #define MAX_NETNAME			36
 #define	MAX_VOTE_COUNT		3
 
+#ifdef DEFRAG
+typedef enum {
+	VOTE_ABSTAIN,
+	VOTE_YES,
+	VOTE_NO
+} voteState_t;
+#endif
+
 // client data that stays across multiple respawns, but is cleared
 // on each level change or team change at ClientBegin()
 typedef struct {
@@ -260,6 +268,11 @@ typedef struct {
 	int			voteCount;			// to prevent people from constantly calling votes
 	int			teamVoteCount;		// to prevent people from constantly calling votes
 	qboolean	teamInfo;			// send team overlay updates?
+#ifdef DEFRAG
+	char		dfName[20];
+	qboolean	fastRespawn;
+	voteState_t	voteState;
+#endif
 } clientPersistant_t;
 
 
