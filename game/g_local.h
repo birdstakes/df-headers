@@ -64,6 +64,15 @@ typedef enum {
 
 //============================================================================
 
+#ifdef DEFRAG
+typedef struct {
+	int		clientNum;
+	int		challenge;
+	int		timeout;
+	int		requestTime;
+} auth_t;
+#endif
+
 typedef struct gentity_s gentity_t;
 typedef struct gclient_s gclient_t;
 
@@ -175,6 +184,16 @@ struct gentity_s {
 	float		random;
 
 	gitem_t		*item;			// for bonus items
+
+#ifdef DEFRAG
+	auth_t		*auth;
+	int			clientWaits[MAX_CLIENTS];
+
+	// only use targets once per frame to prevent infinite recursion
+	int			activationLevelTime;
+	int			clientActivatorBitmap[2];
+	int			activatedByNonClient;
+#endif
 };
 
 
