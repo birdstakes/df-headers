@@ -434,6 +434,10 @@ typedef struct {
 #ifdef MISSIONPACK
 	int			portalSequence;
 #endif
+
+#ifdef DEFRAG
+	int			numArenas;
+#endif
 } level_locals_t;
 
 
