@@ -1013,3 +1013,26 @@ int		trap_GeneticParentsAndChildSelection(int numranks, float *ranks, int *paren
 
 void	trap_SnapVector( float *v );
 
+#ifdef DEFRAG
+typedef enum {
+    TIMER_NO_EVENT,
+    TIMER_START_EVENT,
+    TIMER_STOP_EVENT,
+    TIMER_CHECKPOINT_EVENT
+} timerEvent_t;
+
+typedef struct {
+    int time;
+    int one_ms_time;
+    // probably, I don't really care enough to make sure; part of new 1 ms thing
+    float total_timer_offset;
+    timerEvent_t event;
+    // probably 0 most of the time and only ever used on start/stop events, but I don't care enough for now; part of new 1 ms thing
+    float timer_offset;
+    qboolean timer_running;
+    int checkpoint_bitmap;
+    int num_checkpoints;
+} timerInfo_t;
+
+extern timerInfo_t timers[MAX_CLIENTS];
+#endif
