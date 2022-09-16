@@ -153,6 +153,7 @@ typedef enum {
 #define PMF_FOLLOW			4096	// spectate following another player
 #define PMF_SCOREBOARD		8192	// spectate as a scoreboard
 #define PMF_INVULEXPAND		16384	// invulnerability sphere set to full size
+#define PMF_PROMODE			32768
 
 #define	PMF_ALL_TIMES	(PMF_TIME_WATERJUMP|PMF_TIME_LAND|PMF_TIME_KNOCKBACK)
 
@@ -216,10 +217,19 @@ typedef enum {
 	STAT_MAX_HEALTH,				// health / armor limit, changable by handicap
 #ifdef DEFRAG
 	STAT_JUMPTIME = 10,
-	STAT_DJING
+	STAT_DJING,
+	STAT_MISC
 #endif
 } statIndex_t;
 
+#ifdef DEFRAG
+// bits of STAT_MISC
+#define MISC_UNKNOWN_1		1
+#define MISC_NOOB			0x200
+#define MISC_HOOK_TYPE_LSB	0x400
+#define MISC_HOOK_TYPE_MSB	0x800
+#define MISC_LG_KNOCKBACK	0x1000
+#endif
 
 // player_state->persistant[] indexes
 // these fields are the only part of player_state that isn't
