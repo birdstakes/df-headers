@@ -218,7 +218,9 @@ typedef enum {
 #ifdef DEFRAG
 	STAT_JUMPTIME = 10,
 	STAT_DJING,
-	STAT_MISC
+	STAT_MISC,
+	STAT_KEYS,
+	STAT_INTERFERENCE
 #endif
 } statIndex_t;
 
@@ -229,6 +231,11 @@ typedef enum {
 #define MISC_HOOK_TYPE_LSB	0x400
 #define MISC_HOOK_TYPE_MSB	0x800
 #define MISC_LG_KNOCKBACK	0x1000
+
+// bits of STAT_INTERFERENCE
+#define DF_INTERFERENCE_P2P_OFF 	0x1
+#define DF_INTERFERENCE_MISSILE_OFF 0x2
+#define DF_INTERFERENCE_ENEMY_OFF 	0x4
 #endif
 
 // player_state->persistant[] indexes
