@@ -301,6 +301,10 @@ typedef struct {
 	int				captures;
 	qboolean	perfect;
 	int				team;
+#ifdef DEFRAG
+	qboolean		isBeingSpectated;		// this client is being spectated
+	int				spectatingClientNum;	// who this client is spectating
+#endif // DEFRAG
 } score_t;
 
 // each client has an associated clientInfo_t
@@ -550,6 +554,15 @@ typedef struct {
 	int				spectatorOffset;										// current offset from start
 	int				spectatorPaintLen; 									// current offset from start
 
+#ifdef DEFRAG
+	qboolean	haveSpectators;
+	qboolean	haveSpeedAward;
+	int			speedAwardSpeed;
+	int			speedAwardClientNum;
+	char		speedAwardClientName[MAX_CLIENTS];
+	int			speed;
+#endif // DEFRAG
+	
 	// skull trails
 	skulltrail_t	skulltrails[MAX_CLIENTS];
 
