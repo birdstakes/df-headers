@@ -559,7 +559,7 @@ typedef struct {
 	qboolean	haveSpeedAward;
 	int			speedAwardSpeed;
 	int			speedAwardClientNum;
-	char		speedAwardClientName[MAX_CLIENTS];
+	char		speedAwardClientName[MAX_QPATH];
 	int			speed;
 #endif // DEFRAG
 	
