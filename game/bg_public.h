@@ -226,11 +226,16 @@ typedef enum {
 
 #ifdef DEFRAG
 // bits of STAT_MISC
-#define MISC_UNKNOWN_1		1
-#define MISC_NOOB			0x200
-#define MISC_HOOK_TYPE_LSB	0x400
-#define MISC_HOOK_TYPE_MSB	0x800
-#define MISC_LG_KNOCKBACK	0x1000
+// _EVENT are used to convey events with bit flips
+#define MISC_UNKNOWN_1				0x1
+#define MISC_TIMER_RUNNING 			0x2
+#define MISC_TIMER_START_EVENT		0x4
+#define MISC_TIMER_STOP_EVENT		0x8
+#define MISC_TIMER_CHECKPOINT_EVENT	0x10
+#define MISC_NOOB					0x200
+#define MISC_HOOK_TYPE_LSB			0x400
+#define MISC_HOOK_TYPE_MSB			0x800
+#define MISC_LG_KNOCKBACK			0x1000
 
 // bits of STAT_INTERFERENCE
 #define DF_INTERFERENCE_P2P_OFF 	0x1
