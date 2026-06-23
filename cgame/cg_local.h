@@ -1685,7 +1685,7 @@ int CG_NewParticleArea ( int num );
 
 #ifdef DEFRAG
 typedef struct {
-	// even if timer has finished, it is considered as having started in this field
+	// has timer started at all? so even if you have finished this is true as timer had to have been started
 	qboolean timer_started;
 	qboolean new_pb;
 	int df_recfiles_session_modification_count;
