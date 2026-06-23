@@ -1683,3 +1683,11 @@ extern qboolean		initparticles;
 int CG_NewParticleArea ( int num );
 
 
+#ifdef DEFRAG
+typedef struct {
+	// has timer started at all? so even if you have finished this is true as timer had to have been started
+	qboolean timer_started;
+	qboolean new_pb;
+	int df_recfiles_session_modification_count;
+} checkpointStatus_t;
+#endif // DEFRAG
