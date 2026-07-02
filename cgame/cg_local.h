@@ -1684,10 +1684,57 @@ int CG_NewParticleArea ( int num );
 
 
 #ifdef DEFRAG
+
+typedef struct {
+	qboolean server_is_defrag;
+	int version;
+	int gametype;
+	int defrag_gametype;
+	int mode;
+	qboolean is_multiplayer;
+	qboolean promode;
+	qboolean obs;
+	int flags;
+	char mapname[64];
+	char route[16];
+	char competition[256];
+	qboolean sv_cheats;
+	char servername[256];
+	char gamename[64];
+	char fs_game[64];
+	int svfps;
+	qboolean g_synchronousClients;
+	int pmove_msec;
+	qboolean sv_pure;
+	int clfps;
+} defragInfo_t;
+
 typedef struct {
 	// has timer started at all? so even if you have finished this is true as timer had to have been started
 	qboolean timer_started;
 	qboolean new_pb;
 	int df_recfiles_session_modification_count;
 } checkpointStatus_t;
+
+typedef enum {
+    OB_BELOW,
+    OB_GO,
+    OB_JUMP,
+    OB_PLASMA,
+    OB_PLASMAJUMP,
+    OB_ROCKET,
+    OB_ROCKETJUMP,
+    OB_QUADED_PLASMA,
+    OB_QUADED_PLASMAJUMP,
+    OB_QUADED_ROCKET,
+    OB_QUADED_ROCKETJUMP,
+    OB_STICKY_GO,
+    OB_STICKY_JUMP,
+    OB_STICKY_PLASMA,
+    OB_STICKY_PLASMAJUMP,
+    OB_STICKY_ROCKET,
+    OB_STICKY_ROCKETJUMP,
+    OB_MAX
+} obType_t;
+
 #endif // DEFRAG
