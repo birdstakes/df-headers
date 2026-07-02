@@ -51,6 +51,15 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #define FL_NO_BOTS				0x00002000	// spawn point not for bot use
 #define FL_NO_HUMANS			0x00004000	// spawn point just for bots
 #define FL_FORCE_GESTURE		0x00008000	// force gesture on client
+#define FL_NOTVQ3				0x00010000
+#define FL_NOTCPM				0x00020000
+#define FL_NOTMP				0x00040000
+#define FL_NOTSP				0x00080000
+#define FL_NOTDF				0x00100000
+#define FL_NOTTM				0x00200000
+#define FL_NOTTEAM				0x00400000
+#define FL_MOVER				0x00800000
+#define FL_EXPLICIT_GIVE_CMD	0x01000000
 
 // movers are things like doors, plats, buttons, etc
 typedef enum {
@@ -1014,6 +1023,51 @@ int		trap_GeneticParentsAndChildSelection(int numranks, float *ranks, int *paren
 void	trap_SnapVector( float *v );
 
 #ifdef DEFRAG
+typedef enum {
+	DF_NDM_TYPE_NONE,
+	DF_NDM_TYPE_TRIGGER,
+	DF_NDM_TYPE_FLAG,
+	DF_NDM_TYPE_SPAWN,
+	DF_NDM_TYPE_ITEM
+} ndmItemType_t;
+
+typedef struct {
+	ndmItemType_t type;
+	gitem_t *item;
+} ndmItem_t;
+
+typedef struct {
+	int gametype;
+	int dedicated;
+	qboolean promode;
+	int submode;
+	int defrag_flags;
+	int mapNameCheckSum;
+	int numGlobalFragsFilters;
+	gentity_t *globalFragsFilters[10];
+	int fraglimit;
+	int fraglimitUpdateTime;
+	ndmItem_t ndm_timer_start;
+	ndmItem_t ndm_timer_checkpoint;
+	ndmItem_t ndm_timer_stop;
+	qboolean ndm_damage;
+	int ndm_weaponsSet;
+	int itemUseAllowedBitmap;
+	int itemPickupAllowedBitmap;
+	int ndm_nopad;
+	int ndm_noteleport;
+	int ndm_nomover;
+	int hookType;
+	int lgKnockback;
+	int speedAwardTopSpeed;
+	int speedAwardClientNum;
+	char speedAwardName[128];
+	// used to avoid spamming speed award broadcasts every frame or whatever
+	int speedAwardThrottleEndTime;
+	qboolean haveStartTimer;
+	qboolean haveTeamItems;
+} df_t;
+
 typedef enum {
     TIMER_NO_EVENT,
     TIMER_START_EVENT,
