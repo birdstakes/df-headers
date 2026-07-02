@@ -326,6 +326,11 @@ struct gclient_s {
 	int			latched_buttons;
 
 	vec3_t		oldOrigin;
+#ifdef DEFRAG
+	vec3_t		oldVelocity;
+	vec3_t		endVelocity;
+	int			oldCmdTime;
+#endif // DEFRAG
 
 	// sum up damage over an entire frame, so
 	// shotgun blasts give a single big kick
@@ -370,8 +375,22 @@ struct gclient_s {
 	int			ammoTimes[WP_NUM_WEAPONS];
 	int			invulnerabilityTime;
 #endif
+#ifdef DEFRAG
+	// this could be an array? unknowns don't seem to be accessed
+	// used for lag cheat detection
+	int			lastBfgTime;
+	int			lastGrenadeTime;
+	int			unknown1;
+	int			lastHookTime;
+	int			lastRocketTime;
+	int			unknown2;
 
+	qboolean	hookActive;
+	int			arena;
+	int			pain_debounce_time; // apparently?
+#else
 	char		*areabits;
+#endif // DEFRAG
 };
 
 
